@@ -6,31 +6,31 @@
 
 BFS：
 
-<img src="Introduction/GIF/BFS.gif" style="zoom: 50%;" />
+<img src="Introduction/GIF/BFS.gif" width="400" />
 
 <br/>
 
 DFS：
 
-<img src="Introduction/GIF/DFS.gif" style="zoom: 50%;" />
+<img src="Introduction/GIF/DFS.gif" width="400" />
 
 <br/>
 
 BestFirstSearch：
 
-<img src="Introduction/GIF/BestFirstSearch.gif" style="zoom: 50%;" />
+<img src="Introduction/GIF/BestFirstSearch.gif" width="400" />
 
 <br/>
 
 Dijkstra：
 
-<img src="Introduction/GIF/Dijkstra.gif" style="zoom: 50%;" />
+<img src="Introduction/GIF/Dijkstra.gif" width="400" />
 
 <br/>
 
 A*：
 
-<img src="Introduction/GIF/Astar.gif" style="zoom: 50%;" />
+<img src="Introduction/GIF/Astar.gif" width="400" />
 
 <br/>
 
@@ -40,7 +40,7 @@ A*：
 
 ​	你可以直接下载release版本：
 
-<img src="Introduction/Pictures/01.png" style="zoom: 50%;" />
+<img src="Introduction/Pictures/01.png" width="800" />
 
 <br/>
 
@@ -52,7 +52,7 @@ A*：
 
 ​	你也可以直接在编辑器中打开项目：
 
-<img src="Introduction/Pictures/02.png"  />
+<img src="Introduction/Pictures/02.png" width="1000" />
 
 <br/>
 
@@ -73,7 +73,7 @@ A*：
 
 ​	如果你先要修改墙的位置，那就在编辑器中框选结点，然后在Inspector面板中设置结点的类型（Type）即可，你需要设置**Wall（墙）**、**HasNotVisited（也就是白色结点**）、**Start（开始结点）**和**End（结束结点）**即可：
 
-<img src="Introduction/Pictures/06.png" style="zoom:67%;" />
+<img src="Introduction/Pictures/06.png" width="600" />
 
 <br/>
 
@@ -81,7 +81,7 @@ A*：
 
 ​	下面是所有的游戏脚本：
 
-<img src="Introduction/Pictures/03.png"  />
+<img src="Introduction/Pictures/03.png" width="300" />
 
 <br/>
 
@@ -103,11 +103,11 @@ A*：
 
 - `List<List<int>> directions8`：方向数组，决定结点每次可访问的邻接结点的数量，8表示与结点相邻的8个结点都可以访问到：
 
-<img src="Introduction/Pictures/04.png" style="zoom:25%;" />
+<img src="Introduction/Pictures/04.png" width="300" />
 
 - `List<List<int>> directions4`：同上，不过只能访问四个方向的结点：
 
-<img src="Introduction/Pictures/05.png" style="zoom:25%;" />
+<img src="Introduction/Pictures/05.png" width="300" />
 
 - `List<Node> Neighbor(Node node, List<List<int>> directions)`：访问某个结点的所有邻居结点，第一个参数为结点；第二个参数为访问的方向，即使用上面的两个方向数组决定访问的方向；返回值为存放所有邻居结点的列表。
 
