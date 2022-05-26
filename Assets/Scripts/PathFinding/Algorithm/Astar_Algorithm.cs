@@ -15,8 +15,13 @@ public class Astar_Algorithm : ISelectAlgorithm
         //return (int)(new Vector2(index2.x - index1.x, index2.y - index1.y)).magnitude * 10;
 
         // 曼哈顿距离
-        return (Mathf.Abs(index1.x - index2.x)
-            + Mathf.Abs(index1.y - index2.y)) * 10;
+        // return (Mathf.Abs(index1.x - index2.x)
+        //     + Mathf.Abs(index1.y - index2.y)) * 10;
+
+        // 对角距离
+        float dx = Mathf.Abs(index1.x - index2.x);
+        float dy = Mathf.Abs(index1.y - index2.y);
+        return (dx + dy) * 10 - 6 * Mathf.Min(dx, dy);
     }
 
     // 两个结点之间的距离，即G代价
