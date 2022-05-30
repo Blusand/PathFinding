@@ -40,7 +40,7 @@ public class DFS_Algorithm : ISelectAlgorithm
         // 记录已经遍历过的结点
         closeList.Add(startNode);
 
-        foreach (var neighbor in Shuffle(Map.Instance.Neighbor(startNode, Map.Instance.directions4)))
+        foreach (var neighbor in Map.Instance.Neighbor(startNode, Map.Instance.directions4))
         {
             // 该结点还未遍历过
             if (!closeList.Contains(neighbor))

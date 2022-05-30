@@ -12,11 +12,11 @@ public class BestFirstSearch_Algorithm : ISelectAlgorithm
     float heuristic(Vector2 index1, Vector2 index2)
     {
         // 欧几里德距离
-        // return (int)(new Vector2(index2.x - index1.x, index2.y - index1.y)).magnitude;
+        return (int)(new Vector2(index2.x - index1.x, index2.y - index1.y)).magnitude;
 
         // 曼哈顿距离
-        return (Mathf.Abs(index1.x - index2.x)
-            + Mathf.Abs(index1.y - index2.y)) * 10;
+        // return (Mathf.Abs(index1.x - index2.x)
+        //     + Mathf.Abs(index1.y - index2.y)) * 10;
     }
 
     void BestFirstSearch(Node startNode, Node endNode)

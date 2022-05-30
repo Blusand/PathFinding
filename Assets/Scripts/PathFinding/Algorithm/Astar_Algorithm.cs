@@ -12,7 +12,7 @@ public class Astar_Algorithm : ISelectAlgorithm
     float heuristic(Vector2 index1, Vector2 index2)
     {
         // 欧几里德距离
-        //return (int)(new Vector2(index2.x - index1.x, index2.y - index1.y)).magnitude * 10;
+        // return (int)(new Vector2(index2.x - index1.x, index2.y - index1.y)).magnitude * 10;
 
         // 曼哈顿距离
         // return (Mathf.Abs(index1.x - index2.x)
