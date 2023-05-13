@@ -1,18 +1,18 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Button : MonoBehaviour
 {
-    public InputField startNodeX;
-    public InputField startNodeY;
-    public InputField endNodeX;
-    public InputField endNodeY;
+    public TMP_InputField startNodeX;
+    public TMP_InputField startNodeY;
+    public TMP_InputField endNodeX;
+    public TMP_InputField endNodeY;
 
     Vector2 startNodeIndex;
     Vector2 endNodeIndex;
 
     bool pause = false;
-    
+
     void Start()
     {
         // 起点终点初始值
@@ -25,8 +25,39 @@ public class Button : MonoBehaviour
     // 设置起点和终点的坐标
     void SetVector()
     {
-        startNodeIndex = new Vector2(int.Parse(startNodeX.text), int.Parse(startNodeY.text));
-        endNodeIndex = new Vector2(int.Parse(endNodeX.text), int.Parse(endNodeY.text));
+        if (pause)
+        {
+            pause = false;
+            Time.timeScale = 1;
+        }
+
+        int startX = int.Parse(startNodeX.text);
+        if (startX < 0)
+        {
+            startX = 0;
+        }
+
+        int startY = int.Parse(startNodeY.text);
+        if (startY < 0)
+        {
+            startY = 0;
+        }
+
+        startNodeIndex = new Vector2(startX, startY);
+
+        int endX = int.Parse(endNodeX.text);
+        if (endX >= Map.mapWidth)
+        {
+            endX = Map.mapWidth - 1;
+        }
+
+        int endY = int.Parse(endNodeY.text);
+        if (endY >= Map.mapHeight)
+        {
+            endY = Map.mapHeight - 1;
+        }
+
+        endNodeIndex = new Vector2(endX, endY);
     }
 
     // BFS
@@ -74,9 +105,13 @@ public class Button : MonoBehaviour
     {
         pause = !pause;
         if (pause)
+        {
             Time.timeScale = 0;
+        }
         else
+        {
             Time.timeScale = 1;
+        }
     }
 
     // 退出游戏

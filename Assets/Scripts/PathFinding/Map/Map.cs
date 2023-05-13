@@ -9,16 +9,15 @@ public class Map : MonoBehaviour
 {
     // 单例模式
     private static Map instance;
+
     public static Map Instance
     {
         get { return instance; }
     }
 
     // 地图宽高
-    [SerializeField, Header("地图信息")]
-    int mapWidth;
-    [SerializeField]
-    int mapHeight;
+    [Header("地图信息")]
+    static public int mapWidth = 30, mapHeight = 30;
 
     [SerializeField, Header("结点信息")]
     Node nodePerfab;
@@ -33,6 +32,7 @@ public class Map : MonoBehaviour
     // 玩家设置坐标
     [Min(0)]
     public Vector2 startNodeIndex, endNodeIndex;
+
     // 内部获取结点
     Node startNode, endNode;
 
@@ -41,11 +41,12 @@ public class Map : MonoBehaviour
 
     [Range(0.001f, 0.01f), SerializeField, Header("可视化结点信息")]
     float visualSpeed = 0.01f;
+
     [SerializeField]
-    Color startNodeColor = Color.green, 
-        endNodeColor = Color.red, 
+    Color startNodeColor = Color.green,
+        endNodeColor = Color.red,
         wallColor = Color.black,
-        hasVisitedColor = Color.cyan, 
+        hasVisitedColor = Color.cyan,
         outsideColor = Color.yellow,
         pathColor = Color.blue;
 
@@ -65,7 +66,8 @@ public class Map : MonoBehaviour
         // PlayerInput();
     }
 
-#region CallAlgorithm
+    #region CallAlgorithm
+
     // 玩家按键输入
     void PlayerInput()
     {
@@ -149,9 +151,11 @@ public class Map : MonoBehaviour
         pathFinding.StartAlgorithm(startNode, endNode);
         StartCoroutine(VisualSearch(startNode, endNode));
     }
-#endregion
 
-#region MapControl
+    #endregion
+
+    #region MapControl
+
     // 设置起点和终点
     public void SetNode(Vector2 startNodeIndex, Vector2 endNodeIndex)
     {
@@ -181,7 +185,7 @@ public class Map : MonoBehaviour
             for (int col = 0; col < mapHeight; ++col)
             {
                 // 生成物体时记得在new Vector3中根据物体的大小进行偏移
-                nodes[row, col] = Instantiate(nodePerfab, 
+                nodes[row, col] = Instantiate(nodePerfab,
                     new Vector3(row * nodeWidth, col * nodeHeight, 0), Quaternion.identity, transform);
                 nodes[row, col].gameObject.transform.localScale = new Vector3(nodeWidth, nodeHeight, 1);
                 nodes[row, col].index = new Vector2(row, col);
@@ -203,6 +207,7 @@ public class Map : MonoBehaviour
             nodes[i, 25].type = NodeType.Wall;
             nodes[i, 25].gameObject.GetComponent<Renderer>().material.SetColor("_CellColor", Color.black);
         }
+
         for (int j = 10; j <= 25; ++j)
         {
             nodes[25, j].type = NodeType.Wall;
@@ -238,25 +243,28 @@ public class Map : MonoBehaviour
                 Destroy(nodes[row, col].gameObject);
             }
         }
+
         nodes = null;
     }
-#endregion
 
-#region AuxiliaryFunction
+    #endregion
+
+    #region AuxiliaryFunction
+
     // 方向数组1（左上、上、右上、右、右下、下、左下、左）
     public List<List<int>> directions8 = new List<List<int>>
     {
-        new List<int>{-1, -1}, new List<int>{0, 1},
-        new List<int>{1, 1}, new List<int>{1, 0},
-        new List<int>{1, -1}, new List<int>{0, 1},
-        new List<int>{-1, -1}, new List<int>{-1, 0},
+        new List<int> { -1, -1 }, new List<int> { 0, 1 },
+        new List<int> { 1, 1 }, new List<int> { 1, 0 },
+        new List<int> { 1, -1 }, new List<int> { 0, 1 },
+        new List<int> { -1, -1 }, new List<int> { -1, 0 },
     };
 
     // 方向数组2（上、下、左、右）
     public List<List<int>> directions4 = new List<List<int>>
     {
-        new List<int>{0, 1}, new List<int>{0, -1},
-        new List<int>{-1, 0}, new List<int>{1, 0}
+        new List<int> { 0, 1 }, new List<int> { 0, -1 },
+        new List<int> { -1, 0 }, new List<int> { 1, 0 }
     };
 
     // 判断位置是否合法
@@ -264,9 +272,9 @@ public class Map : MonoBehaviour
     {
         // 位置越界
         if (index.x < 0 || index.x >= mapWidth
-            || index.y < 0 || index.y >= mapHeight)
+                        || index.y < 0 || index.y >= mapHeight)
             return false;
-        
+
         // 墙壁不可达
         if (nodes[(int)index.x, (int)index.y].type == NodeType.Wall)
             return false;
@@ -323,7 +331,7 @@ public class Map : MonoBehaviour
     // 设置颜色
     void SetNodeColor(Node node, NodeType nodeType)
     {
-        switch(nodeType)
+        switch (nodeType)
         {
             case NodeType.Start:
                 node.gameObject.GetComponent<Renderer>().material.SetColor("_CellColor", startNodeColor);
@@ -361,14 +369,15 @@ public class Map : MonoBehaviour
 
         StartCoroutine(FindPath(startNode, endNode));
     }
-    
-#endregion
+
+    #endregion
 }
 
 public class Pair<T1, T2>
 {
     public T1 First { get; set; }
     public T2 Second { get; set; }
+
     public Pair(T1 first, T2 second)
     {
         First = first;
